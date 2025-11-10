@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d59ae8f1c0cb46528342dcf6ec98f43b, type: 3}
+  m_Name: SnakePoolConfig
+  m_EditorClassIdentifier: Assembly-CSharp::Pool.PoolConfig
+  <Key>k__BackingField: {fileID: 11400000, guid: 327926cd605ed994e9c61af999cbade0, type: 2}
+  <Prefab>k__BackingField: {fileID: 7000914004913259149, guid: a6cb2bf7b8dae084ab8849d3a7c440dd, type: 3}
+  <PrewarmAmount>k__BackingField: 10
+  <ReturnCondition>k__BackingField: 2
+  <TimeToRelease>k__BackingField: 0

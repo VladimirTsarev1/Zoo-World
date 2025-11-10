@@ -1,0 +1,17 @@
+﻿using UnityEngine;
+
+namespace Pool
+{
+    [CreateAssetMenu(fileName = "NewPoolConfig", menuName = "ScriptableObject/PoolConfig")]
+    public sealed class PoolConfig : ScriptableObject
+    {
+        [field: SerializeField] public PoolKey Key { get; private set; }
+        [field: SerializeField] public GameObject Prefab { get; private set; }
+        [field: SerializeField, Min(0)] public int PrewarmAmount { get; private set; } = 10;
+
+        [field: SerializeField] public PoolReleaseConditions ReturnCondition { get; private set; } =
+            PoolReleaseConditions.OnDisable;
+
+        [field: SerializeField] public float TimeToRelease { get; private set; }
+    }
+}
