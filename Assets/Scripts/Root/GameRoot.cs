@@ -1,5 +1,7 @@
-﻿using Services.CameraBounds;
-using Services.Pools;
+﻿using Animals;
+using Pool.Service;
+using Services;
+using Services.CameraBounds;
 using UnityEngine;
 
 namespace Root
@@ -11,12 +13,19 @@ namespace Root
         private void Awake()
         {
             InitializeServices();
+
+            InitializeAnimalSpawner();
         }
 
         private void InitializeServices()
         {
-            Services.ServiceLocator.PoolService = new PoolService();
-            Services.ServiceLocator.CameraBounds = new CameraBoundsService(mainCamera);
+            ServiceLocator.PoolService = new PoolService();
+            ServiceLocator.CameraBounds = new CameraBoundsService(mainCamera);
+        }
+
+        private void InitializeAnimalSpawner()
+        {
+            var animalSpawner = new AnimalSpawner(ServiceLocator.PoolService);
         }
     }
 }

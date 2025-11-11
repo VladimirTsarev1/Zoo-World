@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d59ae8f1c0cb46528342dcf6ec98f43b, type: 3}
   m_Name: SnakePoolConfig
   m_EditorClassIdentifier: Assembly-CSharp::Pool.PoolConfig
-  <Key>k__BackingField: {fileID: 11400000, guid: 327926cd605ed994e9c61af999cbade0, type: 2}
+  <KeyConfig>k__BackingField: {fileID: 11400000, guid: 327926cd605ed994e9c61af999cbade0, type: 2}
   <Prefab>k__BackingField: {fileID: 7000914004913259149, guid: a6cb2bf7b8dae084ab8849d3a7c440dd, type: 3}
   <PrewarmAmount>k__BackingField: 10
   <ReturnCondition>k__BackingField: 2

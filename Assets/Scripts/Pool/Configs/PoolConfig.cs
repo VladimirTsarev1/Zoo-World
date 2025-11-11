@@ -1,11 +1,11 @@
 ﻿using UnityEngine;
 
-namespace Pool
+namespace Pool.Configs
 {
     [CreateAssetMenu(fileName = "NewPoolConfig", menuName = "ScriptableObject/PoolConfig")]
     public sealed class PoolConfig : ScriptableObject
     {
-        [field: SerializeField] public PoolKey Key { get; private set; }
+        [field: SerializeField] public PoolKeyConfig KeyConfig { get; private set; }
         [field: SerializeField] public GameObject Prefab { get; private set; }
         [field: SerializeField, Min(0)] public int PrewarmAmount { get; private set; } = 10;
 
