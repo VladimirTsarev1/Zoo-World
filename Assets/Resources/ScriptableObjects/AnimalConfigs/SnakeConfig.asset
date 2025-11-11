@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 05af88bd833743fc8dfb9a9ec142ab0a, type: 3}
   m_Name: SnakeConfig
   m_EditorClassIdentifier: Assembly-CSharp::Animals.Configs.Snake.SnakeConfig
-  <PoolKeyConfig>k__BackingField: {fileID: 11400000, guid: 676cf8303356118448fa2e23ca303dcd, type: 2}
+  <PoolKeyConfig>k__BackingField: {fileID: 11400000, guid: 327926cd605ed994e9c61af999cbade0, type: 2}
+  <MoveConfig>k__BackingField: {fileID: 11400000, guid: adecb11ef5e718847a6ca4aee27f0502, type: 2}
   <AnimalType>k__BackingField: 2
   <MoveSpeed>k__BackingField: 10

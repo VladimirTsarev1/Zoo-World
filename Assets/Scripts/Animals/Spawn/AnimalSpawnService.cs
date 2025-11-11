@@ -61,8 +61,11 @@ namespace Animals.Spawn
                     break;
                 }
 
+                var spawnPoint = _cameraBoundsService.GetRandomPointOnFloor();
+                spawnPoint.y += 1f;
+
                 _animalFactory.CreateAnimal(_animalConfigService.GetRandomAnimal(),
-                    _cameraBoundsService.GetRandomPointOnFloor());
+                    spawnPoint);
             }
         }
     }

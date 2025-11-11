@@ -1,4 +1,5 @@
-﻿namespace Animals
+﻿
+namespace Animals
 {
     public class Snake : Animal
     {

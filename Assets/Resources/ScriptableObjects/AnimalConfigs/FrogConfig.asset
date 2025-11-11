@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb77bff98a5f4ad6bea4831ba0ba6a0d, type: 3}
   m_Name: FrogConfig
   m_EditorClassIdentifier: Assembly-CSharp::Animals.Configs.Frog.FrogConfig
-  <PoolKeyConfig>k__BackingField: {fileID: 11400000, guid: 327926cd605ed994e9c61af999cbade0, type: 2}
+  <PoolKeyConfig>k__BackingField: {fileID: 11400000, guid: 676cf8303356118448fa2e23ca303dcd, type: 2}
+  <MoveConfig>k__BackingField: {fileID: 11400000, guid: 22580012a68ef584d88f5231ac6303a6, type: 2}
   <AnimalType>k__BackingField: 1
   <JumpDistance>k__BackingField: 10

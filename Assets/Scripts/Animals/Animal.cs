@@ -1,21 +1,24 @@
-﻿using Pool;
+﻿using Animals.Move;
+using Pool;
+using UnityEngine;
 
 namespace Animals
 {
     public abstract class Animal : BasePooledObject
     {
-        // protected Rigidbody Rigidbody;
-        // protected IMoveBehavior MoveBehavior;
+        protected Rigidbody Rigidbody;
 
-        // public virtual void Initialize(IMoveBehavior moveBehavior)
-        // {
-        //     Rigidbody = GetComponent<Rigidbody>();
-        //     MoveBehavior = moveBehavior;
-        // }
-        //
-        // private void FixedUpdate()
-        // {
-        //     MoveBehavior?.Move(Rigidbody);
-        // }
+        private IMoveStrategy _moveStrategy;
+
+        public void Initialize(MoveConfig moveConfig)
+        {
+            _moveStrategy = moveConfig.CreateStrategy();
+            Rigidbody = GetComponent<Rigidbody>();
+        }
+
+        protected virtual void Update()
+        {
+            _moveStrategy?.Move(Rigidbody);
+        }
     }
 }

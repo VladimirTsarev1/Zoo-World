@@ -2,7 +2,7 @@
 
 namespace Animals.Move
 {
-    public interface IMoveBehavior
+    public interface IMoveStrategy
     {
         public void Move(Rigidbody rb);
     }
