@@ -1,8 +1,6 @@
-﻿using Pool;
-
-namespace Animals
+﻿namespace Animals
 {
-    public class Frog : BasePooledObject
+    public class Frog : Animal
     {
         
     }

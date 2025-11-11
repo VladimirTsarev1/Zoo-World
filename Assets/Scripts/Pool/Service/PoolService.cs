@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using Factory;
 using Pool.Configs;
 using UnityEngine;
 
@@ -10,22 +9,14 @@ namespace Pool.Service
     {
         private readonly Dictionary<PoolKeyConfig, Pool> _pools = new Dictionary<PoolKeyConfig, Pool>();
 
-        private IFactory _factory;
-
         public PoolService()
         {
-            InitFactory();
             InitPools();
-        }
-
-        private void InitFactory()
-        {
-            _factory = new UniversalFactory();
         }
 
         private void InitPools()
         {
-            var poolConfigsList = Resources.LoadAll<PoolConfig>("ScriptableObjects").ToList();
+            var poolConfigsList = Resources.LoadAll<PoolConfig>("ScriptableObjects/PoolConfigs").ToList();
 
             for (var i = 0; i < poolConfigsList.Count; i++)
             {
@@ -37,7 +28,7 @@ namespace Pool.Service
         {
             var poolParentObject = new GameObject(poolConfig.KeyConfig.name);
 
-            var newPool = new Pool(_factory, poolConfig, poolParentObject.transform);
+            var newPool = new Pool(poolConfig, poolParentObject.transform);
 
             _pools.Add(poolConfig.KeyConfig, newPool);
         }
@@ -53,7 +44,7 @@ namespace Pool.Service
                 return poolObject;
             }
 
-            return default;
+            return null;
         }
 
         public void Release(IPoolable pooledObject)

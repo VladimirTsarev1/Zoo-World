@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d59ae8f1c0cb46528342dcf6ec98f43b, type: 3}
+  m_Name: FrogPoolConfig
+  m_EditorClassIdentifier: Assembly-CSharp::Pool.PoolConfig
+  <KeyConfig>k__BackingField: {fileID: 11400000, guid: 676cf8303356118448fa2e23ca303dcd, type: 2}
+  <Prefab>k__BackingField: {fileID: 8850395950065132413, guid: 0e1d82fd8000467469888d27868af41c, type: 3}
+  <PrewarmAmount>k__BackingField: 10
+  <ReturnCondition>k__BackingField: 2
+  <TimeToRelease>k__BackingField: 0

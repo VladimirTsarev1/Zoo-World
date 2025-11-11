@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using Factory;
 using Pool.Configs;
 using UnityEngine;
 
@@ -11,11 +10,9 @@ namespace Pool
 
         private readonly PoolConfig _config;
         private readonly Transform _parent;
-        private readonly IFactory _factory;
 
-        public Pool(IFactory factory, PoolConfig config, Transform parent = null)
+        public Pool(PoolConfig config, Transform parent = null)
         {
-            _factory = factory;
             _config = config;
             _parent = parent;
 
@@ -37,7 +34,7 @@ namespace Pool
             }
             else
             {
-                var go = _factory.CreateObject(_config.Prefab, _parent);
+                var go = Object.Instantiate(_config.Prefab, _parent);
                 poolable = go.GetComponent<IPoolable>();
             }
 

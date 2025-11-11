@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Services.CameraBounds
+namespace CameraBounds
 {
     public sealed class CameraBoundsService : ICameraBoundsService
     {
@@ -25,6 +25,26 @@ namespace Services.CameraBounds
 
             return viewportPoint.x < min || viewportPoint.x > max
                                          || viewportPoint.y < min || viewportPoint.y > max;
+        }
+
+        public Vector3 GetRandomPointOnFloor()
+        {
+            float viewportX = Random.Range(0f, 1f);
+            float viewportY = Random.Range(0f, 1f);
+            float viewportZ = 0;
+
+            if (Physics.Raycast(_camera.transform.position, _camera.transform.forward, out RaycastHit hit))
+            {
+                if (hit.transform)
+                {
+                    viewportZ = hit.distance;
+                }
+            }
+            
+            Vector3 viewportPos = new Vector3(viewportX, viewportY, viewportZ);
+            Vector3 worldPos = _camera.ViewportToWorldPoint(viewportPos);
+
+            return worldPos;
         }
     }
 }
