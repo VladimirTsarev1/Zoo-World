@@ -9,10 +9,10 @@ namespace UI.EatenAnimalsCounters
         [SerializeField] private TMP_Text eatenPreysText;
         [SerializeField] private TMP_Text eatenPredatorsText;
 
-        public void SetCounters(int predatorsAmount, int preyAmount)
+        public void SetCounters(int preyAmount, int predatorsAmount)
         {
-            eatenPreysText.text = predatorsAmount.ToString();
-            eatenPredatorsText.text = preyAmount.ToString();
+            eatenPreysText.text = preyAmount.ToString();
+            eatenPredatorsText.text = predatorsAmount.ToString();
         }
     }
 }

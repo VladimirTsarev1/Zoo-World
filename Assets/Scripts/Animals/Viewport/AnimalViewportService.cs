@@ -5,21 +5,21 @@ namespace Animals.Viewport
 {
     public sealed class AnimalViewportService : IAnimalViewportService
     {
-        private ICameraService _cameraService;
+        private ICameraBoundsService _cameraBoundsService;
 
-        public AnimalViewportService(ICameraService cameraService)
+        public AnimalViewportService(ICameraBoundsService cameraBoundsService)
         {
-            _cameraService = cameraService;
+            _cameraBoundsService = cameraBoundsService;
         }
 
         public void CheckIsAnimalOutsideViewport(Animal animal)
         {
-            if (_cameraService.IsOutside(animal.ThisTransform.position) && !animal.IsOutsideViewport)
+            if (_cameraBoundsService.IsOutside(animal.ThisTransform.position) && !animal.IsOutsideViewport)
             {
                 animal.ThisTransform.rotation *= quaternion.Euler(0f, 180f, 0f);
                 animal.SetOutsideViewportState(true);
             }
-            else if (!_cameraService.IsOutside(animal.ThisTransform.position) && animal.IsOutsideViewport)
+            else if (!_cameraBoundsService.IsOutside(animal.ThisTransform.position) && animal.IsOutsideViewport)
             {
                 animal.SetOutsideViewportState(false);
             }

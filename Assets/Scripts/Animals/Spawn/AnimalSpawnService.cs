@@ -23,7 +23,7 @@ namespace Animals.Spawn
         private readonly IAnimalCollisionService _animalCollisionService;
         private readonly IAnimalViewportService _animalViewportService;
         private readonly IEatenAnimalsCounterService _eatenAnimalsCounterService;
-        private readonly ICameraService _cameraService;
+        private readonly ICameraBoundsService _cameraBoundsService;
         private readonly IPopupService _popupService;
 
         private CancellationTokenSource _cts;
@@ -38,7 +38,7 @@ namespace Animals.Spawn
             IAnimalCollisionService animalCollisionService,
             IAnimalViewportService animalViewportService,
             IEatenAnimalsCounterService eatenAnimalsCounterService,
-            ICameraService cameraService,
+            ICameraBoundsService cameraBoundsService,
             IPopupService popupService)
         {
             _gameDataConfig = gameDataConfig;
@@ -47,7 +47,7 @@ namespace Animals.Spawn
             _animalCollisionService = animalCollisionService;
             _animalViewportService = animalViewportService;
             _eatenAnimalsCounterService = eatenAnimalsCounterService;
-            _cameraService = cameraService;
+            _cameraBoundsService = cameraBoundsService;
             _popupService = popupService;
         }
 
@@ -79,7 +79,7 @@ namespace Animals.Spawn
                     break;
                 }
 
-                var spawnPosition = _cameraService.GetRandomPointOnFloor();
+                var spawnPosition = _cameraBoundsService.GetRandomPointOnFloor();
                 spawnPosition.y += 1f;
 
                 var randomRotation = Quaternion.Euler(0, Random.Range(0f, 360f), 0);

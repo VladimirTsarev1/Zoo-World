@@ -10,7 +10,7 @@ namespace Animals.Factory
     public sealed class AnimalFactory : IAnimalFactory
     {
         private readonly IPoolService _poolService;
-        private readonly ICameraService _cameraService;
+        private readonly ICameraBoundsService _cameraBoundsService;
 
         public AnimalFactory(IPoolService poolService)
         {

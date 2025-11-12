@@ -3,7 +3,6 @@ using Animals.Configs;
 using Animals.Factory;
 using Animals.Spawn;
 using Animals.Viewport;
-using Camera;
 using CameraBounds;
 using Pool.Configs;
 using Pool.Service;
@@ -18,13 +17,13 @@ namespace Root
     public sealed class GameRoot : MonoBehaviour
     {
         [SerializeField] private GameDataConfig gameDataConfig;
-        [SerializeField] private UnityEngine.Camera mainCamera;
+        [SerializeField] private Camera mainCamera;
         [SerializeField] private EatenAnimalsCountersView eatenAnimalsCountersView;
 
         [SerializeField] private PoolKeyConfig popupLabelPoolKey;
 
         private IPoolService _poolService;
-        private ICameraService _cameraService;
+        private ICameraBoundsService _cameraBoundsService;
 
         private IAnimalConfigService _animalConfigService;
         private IAnimalCollisionService _animalCollisionService;
@@ -55,7 +54,7 @@ namespace Root
         {
             _poolService = new PoolService();
 
-            _cameraService = new CameraService(mainCamera);
+            _cameraBoundsService = new CameraBoundsBoundsService(mainCamera);
 
             _popupService = new PopupService(_poolService, popupLabelPoolKey);
 
@@ -65,7 +64,7 @@ namespace Root
 
             _animalCollisionService = new AnimalCollisionService();
 
-            _animalViewportService = new AnimalViewportService(_cameraService);
+            _animalViewportService = new AnimalViewportService(_cameraBoundsService);
 
             _animalFactory = new AnimalFactory(_poolService);
 
@@ -76,7 +75,7 @@ namespace Root
                 _animalCollisionService,
                 _animalViewportService,
                 _eatenAnimalsCounterService,
-                _cameraService,
+                _cameraBoundsService,
                 _popupService);
         }
     }
