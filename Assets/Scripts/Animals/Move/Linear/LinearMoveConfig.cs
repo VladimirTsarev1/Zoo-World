@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Animals.Move
+namespace Animals.Move.Linear
 {
     [CreateAssetMenu(fileName = "LinearMoveConfig", menuName = "ScriptableObject/MoveConfig/LinearMoveConfig")]
     public class LinearMoveConfig : MoveConfig

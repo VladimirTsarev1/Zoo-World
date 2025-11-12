@@ -1,4 +1,5 @@
-﻿using Animals.Configs;
+﻿using Animals.Collision;
+using Animals.Configs;
 using Pool.Service;
 using UnityEngine;
 
@@ -13,7 +14,7 @@ namespace Animals.Factory
             _poolService = poolService;
         }
 
-        public Animal CreateAnimal(AnimalConfig config, Vector3 spawnPosition,
+        public Animal CreateAnimal(AnimalConfig config, IAnimalCollisionService collisionService, Vector3 spawnPosition,
             Quaternion spawnRotation = default)
         {
             var keyConfig = config.PoolKeyConfig;
@@ -22,7 +23,7 @@ namespace Animals.Factory
             animalComponent.transform.position = spawnPosition;
             animalComponent.transform.rotation = spawnRotation;
 
-            animalComponent.Initialize(config.MoveConfig);
+            animalComponent.Initialize(config, collisionService);
 
             return animalComponent;
         }

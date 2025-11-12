@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f8af8d171b64c6e8b93132b213c6d49, type: 3}
   m_Name: LinearMoveConfig
   m_EditorClassIdentifier: Assembly-CSharp::Animals.Move.LinearMoveConfig
-  <Speed>k__BackingField: 50
+  <Speed>k__BackingField: 1

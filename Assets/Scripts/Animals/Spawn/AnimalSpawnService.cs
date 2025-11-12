@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Threading;
+using Animals.Collision;
 using Animals.Configs;
 using Animals.Factory;
 using CameraBounds;
 using Cysharp.Threading.Tasks;
 using Root;
+using UnityEngine;
 using Random = UnityEngine.Random;
 
 namespace Animals.Spawn
@@ -14,6 +16,7 @@ namespace Animals.Spawn
         private readonly GameDataConfig _gameDataConfig;
         private readonly IAnimalFactory _animalFactory;
         private readonly IAnimalConfigService _animalConfigService;
+        private readonly IAnimalCollisionService _animalCollisionService;
         private readonly ICameraBoundsService _cameraBoundsService;
 
         private CancellationTokenSource _cts;
@@ -21,15 +24,16 @@ namespace Animals.Spawn
         private float TimeToSpawn =>
             Random.Range(_gameDataConfig.TimeToSpawnAnimals.x, _gameDataConfig.TimeToSpawnAnimals.y);
 
-        public AnimalSpawnService(
-            GameDataConfig gameDataConfig,
+        public AnimalSpawnService(GameDataConfig gameDataConfig,
             IAnimalFactory animalFactory,
             IAnimalConfigService animalConfigService,
+            IAnimalCollisionService animalCollisionService,
             ICameraBoundsService cameraBoundsService)
         {
             _gameDataConfig = gameDataConfig;
             _animalFactory = animalFactory;
             _animalConfigService = animalConfigService;
+            _animalCollisionService = animalCollisionService;
             _cameraBoundsService = cameraBoundsService;
         }
 
@@ -61,11 +65,16 @@ namespace Animals.Spawn
                     break;
                 }
 
-                var spawnPoint = _cameraBoundsService.GetRandomPointOnFloor();
-                spawnPoint.y += 1f;
+                var spawnPosition = _cameraBoundsService.GetRandomPointOnFloor();
+                spawnPosition.y += 1f;
 
-                _animalFactory.CreateAnimal(_animalConfigService.GetRandomAnimal(),
-                    spawnPoint);
+                var randomRotation = Quaternion.Euler(0, Random.Range(0f, 360f), 0);
+
+                _animalFactory.CreateAnimal(
+                    _animalConfigService.GetRandomAnimal(),
+                    _animalCollisionService,
+                    spawnPosition,
+                    randomRotation);
             }
         }
     }

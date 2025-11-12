@@ -1,10 +1,12 @@
 ﻿using UnityEngine;
 
-namespace Animals.Move
+namespace Animals.Move.Linear
 {
     public class LinearMoveStrategy : IMoveStrategy
     {
         private readonly float _speed;
+
+        private Vector3 _velocity;
 
         public LinearMoveStrategy(float speed)
         {
@@ -13,7 +15,10 @@ namespace Animals.Move
 
         public void Move(Rigidbody rb)
         {
-            rb.linearVelocity = rb.transform.forward * (_speed * Time.fixedDeltaTime);
+            _velocity = rb.transform.forward * _speed;
+            _velocity.y = rb.linearVelocity.y;
+
+            rb.linearVelocity = _velocity;
         }
     }
 }

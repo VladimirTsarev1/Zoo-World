@@ -1,10 +1,10 @@
-﻿using UnityEngine;
+﻿using Animals.Configs;
+using UnityEngine;
 
-namespace Animals.Configs.Frog
+namespace Animals.Frog
 {
     [CreateAssetMenu(fileName = "FrogConfig", menuName = "ScriptableObject/AnimalConfig/FrogConfig")]
     public class FrogConfig : AnimalConfig
     {
-        [field: SerializeField] public float JumpDistance { get; private set; } = 10f;
     }
 }

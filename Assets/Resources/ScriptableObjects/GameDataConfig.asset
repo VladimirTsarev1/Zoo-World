@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aeb5db796e4d4f31a40ab2d53cf9a2d5, type: 3}
   m_Name: GameDataConfig
   m_EditorClassIdentifier: Assembly-CSharp::Root.GameDataConfig
-  <TimeToSpawnAnimals>k__BackingField: {x: 1, y: 2}
+  <TimeToSpawnAnimals>k__BackingField: {x: 0.1, y: 0.3}

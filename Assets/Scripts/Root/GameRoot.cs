@@ -1,4 +1,5 @@
-﻿using Animals.Configs;
+﻿using Animals.Collision;
+using Animals.Configs;
 using Animals.Factory;
 using Animals.Spawn;
 using CameraBounds;
@@ -16,6 +17,7 @@ namespace Root
         private ICameraBoundsService _cameraBoundsService;
 
         private IAnimalConfigService _animalConfigService;
+        private IAnimalCollisionService _animalCollisionService;
         private IAnimalSpawnService _animalSpawnService;
         private IAnimalFactory _animalFactory;
 
@@ -42,12 +44,15 @@ namespace Root
 
             _animalConfigService = new AnimalConfigService();
 
+            _animalCollisionService = new AnimalCollisionService();
+
             _animalFactory = new AnimalFactory(_poolService);
 
             _animalSpawnService = new AnimalSpawnService(
                 gameDataConfig,
                 _animalFactory,
                 _animalConfigService,
+                _animalCollisionService,
                 _cameraBoundsService);
         }
     }
