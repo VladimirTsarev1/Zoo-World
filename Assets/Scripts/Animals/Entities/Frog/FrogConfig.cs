@@ -4,7 +4,7 @@ using UnityEngine;
 namespace Animals.Entities.Frog
 {
     [CreateAssetMenu(fileName = "FrogConfig", menuName = "ScriptableObject/AnimalConfig/FrogConfig")]
-    public class FrogConfig : AnimalConfig
+    public sealed class FrogConfig : AnimalConfig
     {
     }
 }

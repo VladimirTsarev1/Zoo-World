@@ -3,6 +3,7 @@ using Animals.Configs;
 using Animals.Factory;
 using Animals.Spawn;
 using Animals.Viewport;
+using Camera;
 using CameraBounds;
 using Pool.Configs;
 using Pool.Service;
@@ -13,10 +14,11 @@ using UnityEngine;
 
 namespace Root
 {
-    public class GameRoot : MonoBehaviour
+    [DisallowMultipleComponent]
+    public sealed class GameRoot : MonoBehaviour
     {
         [SerializeField] private GameDataConfig gameDataConfig;
-        [SerializeField] private Camera mainCamera;
+        [SerializeField] private UnityEngine.Camera mainCamera;
         [SerializeField] private EatenAnimalsCountersView eatenAnimalsCountersView;
 
         [SerializeField] private PoolKeyConfig popupLabelPoolKey;

@@ -15,7 +15,7 @@ using Random = UnityEngine.Random;
 
 namespace Animals.Spawn
 {
-    public class AnimalSpawnService : IAnimalSpawnService
+    public sealed class AnimalSpawnService : IAnimalSpawnService
     {
         private readonly GameDataConfig _gameDataConfig;
         private readonly IAnimalFactory _animalFactory;

@@ -4,7 +4,7 @@ namespace Animals.Collision.Configs
 {
     [CreateAssetMenu(fileName = "PredatorVsPredatorCollisionConfig",
         menuName = "ScriptableObject/CollisionConfig/PredatorVsPredatorCollisionConfig")]
-    public class PredatorVsPredatorCollisionConfig : AnimalCollisionConfig
+    public sealed class PredatorVsPredatorCollisionConfig : AnimalCollisionConfig
     {
         public override AnimalType AnimalTypeA { get; protected set; } = AnimalType.Predator;
         public override AnimalType AnimalTypeB { get; protected set; } = AnimalType.Predator;

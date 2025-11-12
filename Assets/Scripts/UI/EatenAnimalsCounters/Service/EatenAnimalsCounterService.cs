@@ -2,7 +2,7 @@
 
 namespace UI.EatenAnimalsCounters.Service
 {
-    public class EatenAnimalsCounterService : IEatenAnimalsCounterService
+    public sealed class EatenAnimalsCounterService : IEatenAnimalsCounterService
     {
         private readonly EatenAnimalsCountersView _view;
         private readonly EatenAnimalsCountersModel _model;

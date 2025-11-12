@@ -3,7 +3,7 @@
 namespace Animals.Move.Linear
 {
     [CreateAssetMenu(fileName = "LinearMoveConfig", menuName = "ScriptableObject/MoveConfig/LinearMoveConfig")]
-    public class LinearMoveConfig : MoveConfig
+    public sealed class LinearMoveConfig : MoveConfig
     {
         [field: SerializeField] public float Speed { get; private set; }
 

@@ -3,7 +3,7 @@ using Unity.Mathematics;
 
 namespace Animals.Viewport
 {
-    public class AnimalViewportService : IAnimalViewportService
+    public sealed class AnimalViewportService : IAnimalViewportService
     {
         private ICameraService _cameraService;
 

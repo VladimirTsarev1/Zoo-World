@@ -1,6 +1,6 @@
 ﻿namespace UI.EatenAnimalsCounters
 {
-    public class EatenAnimalsCountersPresenter
+    public sealed class EatenAnimalsCountersPresenter
     {
         private readonly EatenAnimalsCountersModel _model;
         private readonly EatenAnimalsCountersView _view;

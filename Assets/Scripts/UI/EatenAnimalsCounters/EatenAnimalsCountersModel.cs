@@ -3,7 +3,7 @@ using Animals;
 
 namespace UI.EatenAnimalsCounters
 {
-    public class EatenAnimalsCountersModel
+    public sealed class EatenAnimalsCountersModel
     {
         private int _preyEatenAmount;
         private int _predatorsEatenAmount;

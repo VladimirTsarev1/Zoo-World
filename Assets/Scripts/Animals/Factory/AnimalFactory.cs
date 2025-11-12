@@ -7,7 +7,7 @@ using UnityEngine;
 
 namespace Animals.Factory
 {
-    public class AnimalFactory : IAnimalFactory
+    public sealed class AnimalFactory : IAnimalFactory
     {
         private readonly IPoolService _poolService;
         private readonly ICameraService _cameraService;

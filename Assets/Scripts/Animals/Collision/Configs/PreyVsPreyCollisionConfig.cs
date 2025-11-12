@@ -4,7 +4,7 @@ namespace Animals.Collision.Configs
 {
     [CreateAssetMenu(fileName = "PreyVsPreyCollisionConfig",
         menuName = "ScriptableObject/CollisionConfig/PreyVsPreyCollisionConfig")]
-    public class PreyVsPreyCollisionConfig : AnimalCollisionConfig
+    public sealed class PreyVsPreyCollisionConfig : AnimalCollisionConfig
     {
         [field: SerializeField] public float PushForce { get; private set; } = 3f;
 

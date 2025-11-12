@@ -1,7 +1,7 @@
 ﻿
 namespace Animals.Entities.Snake
 {
-    public class Snake : Animal
+    public sealed class Snake : Animal
     {
         
     }

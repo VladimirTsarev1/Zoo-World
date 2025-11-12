@@ -4,6 +4,7 @@ using UnityEngine;
 
 namespace Pool
 {
+    [DisallowMultipleComponent]
     public abstract class BasePooledObject : MonoBehaviour, IPoolable
     {
         public PoolKeyConfig PoolKey { get; set; }

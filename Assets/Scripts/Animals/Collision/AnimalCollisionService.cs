@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace Animals.Collision
 {
-    public class AnimalCollisionService : IAnimalCollisionService
+    public sealed class AnimalCollisionService : IAnimalCollisionService
     {
         private readonly Dictionary<(AnimalType, AnimalType), AnimalCollisionConfig> _collisionConfigs;
 

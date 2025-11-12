@@ -1,6 +1,7 @@
-﻿namespace Animals.Entities.Frog
+﻿
+namespace Animals.Entities.Frog
 {
-    public class Frog : Animal
+    public sealed class Frog : Animal
     {
     }
 }

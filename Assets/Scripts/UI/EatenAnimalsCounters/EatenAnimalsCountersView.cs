@@ -3,7 +3,8 @@ using UnityEngine;
 
 namespace UI.EatenAnimalsCounters
 {
-    public class EatenAnimalsCountersView : MonoBehaviour
+    [DisallowMultipleComponent]
+    public sealed class EatenAnimalsCountersView : MonoBehaviour
     {
         [SerializeField] private TMP_Text eatenPreysText;
         [SerializeField] private TMP_Text eatenPredatorsText;

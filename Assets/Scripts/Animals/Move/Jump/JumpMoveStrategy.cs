@@ -2,7 +2,7 @@
 
 namespace Animals.Move.Jump
 {
-    public class JumpMoveStrategy : IMoveStrategy
+    public sealed class JumpMoveStrategy : IMoveStrategy
     {
         private float _distance;
         private float _delay;

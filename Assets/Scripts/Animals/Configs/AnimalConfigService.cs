@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Animals.Configs
 {
-    public class AnimalConfigService : IAnimalConfigService
+    public sealed class AnimalConfigService : IAnimalConfigService
     {
         private readonly List<AnimalConfig> _animalConfigs;
 

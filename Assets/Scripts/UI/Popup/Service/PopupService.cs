@@ -4,10 +4,10 @@ using UnityEngine;
 
 namespace UI.Popup.Service
 {
-    public class PopupService : IPopupService
+    public sealed class PopupService : IPopupService
     {
         private readonly IPoolService _poolService;
-        private PoolKeyConfig _labelPoolKey;
+        private readonly PoolKeyConfig _labelPoolKey;
 
         public PopupService(IPoolService poolService, PoolKeyConfig labelPoolKey)
         {

@@ -47,15 +47,11 @@ namespace Pool
             {
                 case PoolReleaseConditions.Timer:
 
-
                     var cts = new CancellationTokenSource();
                     _cancellationTokenSources[pooledObject] = cts;
                     ReleaseAfterDelayAsync(pooledObject, _config.TimeToRelease, cts.Token).Forget();
 
                     break;
-
-                // case PoolReleaseConditions.OnDisable:
-                //     break;
             }
 
             pooledObject.PoolKey = _config.KeyConfig;
@@ -82,7 +78,6 @@ namespace Pool
             pooledObject.GameObject.SetActive(false);
             _pooledObjects.Push(pooledObject);
         }
-
 
         private async UniTaskVoid ReleaseAfterDelayAsync(IPoolable pooledObject, float delay, CancellationToken token)
         {

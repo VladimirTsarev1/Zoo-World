@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Animals.Configs
 {
-    public class AnimalConfig : ScriptableObject
+    public abstract class AnimalConfig : ScriptableObject
     {
         [field: SerializeField] public PoolKeyConfig PoolKeyConfig { get; private set; }
         [field: SerializeField] public MoveConfig MoveConfig { get; private set; }

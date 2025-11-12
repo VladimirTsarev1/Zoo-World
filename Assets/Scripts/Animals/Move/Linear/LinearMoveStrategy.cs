@@ -2,7 +2,7 @@
 
 namespace Animals.Move.Linear
 {
-    public class LinearMoveStrategy : IMoveStrategy
+    public sealed class LinearMoveStrategy : IMoveStrategy
     {
         private readonly float _speed;
 

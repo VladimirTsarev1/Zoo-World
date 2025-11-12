@@ -1,11 +1,11 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace Utilities
 {
-    public class FaceCamera : MonoBehaviour
+    [DisallowMultipleComponent]
+    public sealed class FaceCamera : MonoBehaviour
     {
-        private Camera _camera;
+        private UnityEngine.Camera _camera;
         private Transform _cameraTransform;
         private Transform _thisTransform;
 
@@ -16,7 +16,7 @@ namespace Utilities
 
         private void Start()
         {
-            _camera = Camera.main;
+            _camera = UnityEngine.Camera.main;
 
             if (_camera)
             {

@@ -3,7 +3,6 @@ using Animals.Collision;
 using Animals.Configs;
 using Animals.Move;
 using Animals.Viewport;
-using CameraBounds;
 using Pool;
 using UnityEngine;
 

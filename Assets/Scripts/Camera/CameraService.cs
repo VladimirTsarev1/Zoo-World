@@ -1,16 +1,15 @@
-﻿using UnityEngine;
+﻿using CameraBounds;
+using UnityEngine;
 
-namespace CameraBounds
+namespace Camera
 {
     public sealed class CameraService : ICameraService
     {
-        private readonly Camera _camera;
-
-        private Vector3 _cameraFloorCenterPoint;
-
-        public CameraService(Camera camera)
+        private readonly UnityEngine.Camera _camera;
+        
+        public CameraService(UnityEngine.Camera camera)
         {
-            _camera = camera != null ? camera : Camera.main;
+            _camera = camera != null ? camera : UnityEngine.Camera.main;
         }
 
         public bool IsOutside(Vector3 worldPoint, float offset = 0f)
