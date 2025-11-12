@@ -23,7 +23,7 @@ namespace Animals.Collision
             }
         }
 
-        public AnimalCollisionResults HandleCollision(Animal originalAnimal, Animal anotherAnimal,
+        public void HandleCollision(Animal originalAnimal, Animal anotherAnimal,
             UnityEngine.Collision collisionData)
         {
             var originalAnimalType = originalAnimal.Config.AnimalType;
@@ -32,12 +32,11 @@ namespace Animals.Collision
             if (_collisionConfigs.TryGetValue((originalAnimalType, anotherAnimalType), out var config)
                 || _collisionConfigs.TryGetValue((anotherAnimalType, originalAnimalType), out config))
             {
-                var collisionResults = config.HandleCollision(originalAnimal, anotherAnimal, collisionData);
-                return collisionResults;
+                config.HandleCollision(originalAnimal, anotherAnimal, collisionData);
+                return;
             }
 
             Debug.LogWarning($"No Config for ({originalAnimalType}, {anotherAnimalType})");
-            return default;
         }
     }
 }

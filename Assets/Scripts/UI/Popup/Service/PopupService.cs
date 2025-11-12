@@ -2,7 +2,7 @@
 using Pool.Service;
 using UnityEngine;
 
-namespace UI.PopupService
+namespace UI.Popup.Service
 {
     public class PopupService : IPopupService
     {

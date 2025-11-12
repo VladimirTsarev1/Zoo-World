@@ -2,6 +2,8 @@
 using Animals.Collision;
 using Animals.Configs;
 using Animals.Move;
+using Animals.Viewport;
+using CameraBounds;
 using Pool;
 using UnityEngine;
 
@@ -13,19 +15,32 @@ namespace Animals
         public event Action<Animal, Animal> WasEatenByAnotherAnimal;
 
         public AnimalConfig Config { get; private set; }
+        public Transform ThisTransform { get; private set; }
+        public bool IsOutsideViewport { get; private set; }
 
         protected Rigidbody Rigidbody;
 
         private IMoveStrategy _moveStrategy;
         private IAnimalCollisionService _collisionService;
+        private IAnimalViewportService _viewportService;
 
-        public void Initialize(AnimalConfig config, IAnimalCollisionService collisionService)
+        public void Initialize(AnimalConfig config,
+            IAnimalCollisionService collisionService,
+            IAnimalViewportService viewportService)
         {
+            ThisTransform = transform;
+            Rigidbody = GetComponent<Rigidbody>();
+
             Config = config;
             _collisionService = collisionService;
+            _viewportService = viewportService;
 
             _moveStrategy = config.MoveConfig.CreateStrategy();
-            Rigidbody = GetComponent<Rigidbody>();
+        }
+
+        private void Update()
+        {
+            _viewportService.CheckIsAnimalOutsideViewport(this);
         }
 
         protected virtual void FixedUpdate()
@@ -47,7 +62,7 @@ namespace Animals
             AteAnotherAnimal?.Invoke(this, anotherAnimal);
         }
 
-        public virtual void Eaten(Animal eaterAnimal)
+        public virtual void WasEaten(Animal eaterAnimal)
         {
             WasEatenByAnotherAnimal?.Invoke(this, eaterAnimal);
 
@@ -57,6 +72,11 @@ namespace Animals
         public virtual void Push(Vector3 pushVector, ForceMode forceMode)
         {
             Rigidbody.AddForce(pushVector, forceMode);
+        }
+
+        public void SetOutsideViewportState(bool state)
+        {
+            IsOutsideViewport = state;
         }
     }
 }

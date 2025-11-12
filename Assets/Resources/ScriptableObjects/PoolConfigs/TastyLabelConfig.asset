@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d59ae8f1c0cb46528342dcf6ec98f43b, type: 3}
-  m_Name: TasteLabelConfig
+  m_Name: TastyLabelConfig
   m_EditorClassIdentifier: Assembly-CSharp::Pool.Configs.PoolConfig
   <KeyConfig>k__BackingField: {fileID: 11400000, guid: 66556bb408e179e4fba65ca36749b875, type: 2}
   <Prefab>k__BackingField: {fileID: 5593722552321061730, guid: 00293548d94390a47a814553d2e040db, type: 3}

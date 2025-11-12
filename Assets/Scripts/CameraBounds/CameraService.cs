@@ -6,6 +6,8 @@ namespace CameraBounds
     {
         private readonly Camera _camera;
 
+        private Vector3 _cameraFloorCenterPoint;
+
         public CameraService(Camera camera)
         {
             _camera = camera != null ? camera : Camera.main;

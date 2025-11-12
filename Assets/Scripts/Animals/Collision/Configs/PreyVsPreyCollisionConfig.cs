@@ -11,15 +11,13 @@ namespace Animals.Collision.Configs
         public override AnimalType AnimalTypeA { get; protected set; } = AnimalType.Prey;
         public override AnimalType AnimalTypeB { get; protected set; } = AnimalType.Prey;
 
-        public override AnimalCollisionResults HandleCollision(Animal animalA, Animal animalB,
+        public override void HandleCollision(Animal animalA, Animal animalB,
             UnityEngine.Collision collision)
         {
             Vector3 direction = (animalA.transform.position - animalB.transform.position).normalized;
 
             animalA.Push(direction * PushForce, ForceMode.Impulse);
             animalB.Push(-direction * PushForce, ForceMode.Impulse);
-
-            return new AnimalCollisionResults(AnimalCollisionResultType.Pushed, AnimalCollisionResultType.Pushed);
         }
     }
 }

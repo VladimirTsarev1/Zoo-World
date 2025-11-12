@@ -2,7 +2,7 @@
 {
     public interface IAnimalCollisionService
     {
-        public AnimalCollisionResults HandleCollision(
+        public void HandleCollision(
             Animal originalAnimal,
             Animal collisionAnimal,
             UnityEngine.Collision collisionData);

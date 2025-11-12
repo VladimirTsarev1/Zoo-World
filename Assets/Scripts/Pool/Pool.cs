@@ -47,6 +47,7 @@ namespace Pool
             {
                 case PoolReleaseConditions.Timer:
 
+
                     var cts = new CancellationTokenSource();
                     _cancellationTokenSources[pooledObject] = cts;
                     ReleaseAfterDelayAsync(pooledObject, _config.TimeToRelease, cts.Token).Forget();
@@ -73,8 +74,8 @@ namespace Pool
         {
             if (_cancellationTokenSources.TryGetValue(pooledObject, out var cts))
             {
-                cts.Cancel();
-                cts.Dispose();
+                cts?.Cancel();
+                cts?.Dispose();
                 _cancellationTokenSources.Remove(pooledObject);
             }
 

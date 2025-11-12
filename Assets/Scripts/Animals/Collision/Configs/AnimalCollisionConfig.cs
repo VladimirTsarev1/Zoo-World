@@ -7,7 +7,7 @@ namespace Animals.Collision.Configs
         public abstract AnimalType AnimalTypeA { get; protected set; }
         public abstract AnimalType AnimalTypeB { get; protected set; }
 
-        public abstract AnimalCollisionResults HandleCollision(
+        public abstract void HandleCollision(
             Animal animalA,
             Animal animalB,
             UnityEngine.Collision collision);

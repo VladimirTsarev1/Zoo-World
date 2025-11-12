@@ -2,10 +2,13 @@
 using Animals.Configs;
 using Animals.Factory;
 using Animals.Spawn;
+using Animals.Viewport;
 using CameraBounds;
 using Pool.Configs;
 using Pool.Service;
-using UI.PopupService;
+using UI.EatenAnimalsCounters;
+using UI.EatenAnimalsCounters.Service;
+using UI.Popup.Service;
 using UnityEngine;
 
 namespace Root
@@ -14,6 +17,7 @@ namespace Root
     {
         [SerializeField] private GameDataConfig gameDataConfig;
         [SerializeField] private Camera mainCamera;
+        [SerializeField] private EatenAnimalsCountersView eatenAnimalsCountersView;
 
         [SerializeField] private PoolKeyConfig popupLabelPoolKey;
 
@@ -22,10 +26,13 @@ namespace Root
 
         private IAnimalConfigService _animalConfigService;
         private IAnimalCollisionService _animalCollisionService;
+        private IAnimalViewportService _animalViewportService;
         private IAnimalSpawnService _animalSpawnService;
         private IAnimalFactory _animalFactory;
 
         private IPopupService _popupService;
+
+        private IEatenAnimalsCounterService _eatenAnimalsCounterService;
 
         private void Awake()
         {
@@ -47,20 +54,26 @@ namespace Root
             _poolService = new PoolService();
 
             _cameraService = new CameraService(mainCamera);
-            
+
             _popupService = new PopupService(_poolService, popupLabelPoolKey);
+
+            _eatenAnimalsCounterService = new EatenAnimalsCounterService(eatenAnimalsCountersView);
 
             _animalConfigService = new AnimalConfigService();
 
             _animalCollisionService = new AnimalCollisionService();
 
+            _animalViewportService = new AnimalViewportService(_cameraService);
+
             _animalFactory = new AnimalFactory(_poolService);
-            
+
             _animalSpawnService = new AnimalSpawnService(
                 gameDataConfig,
                 _animalFactory,
                 _animalConfigService,
                 _animalCollisionService,
+                _animalViewportService,
+                _eatenAnimalsCounterService,
                 _cameraService,
                 _popupService);
         }

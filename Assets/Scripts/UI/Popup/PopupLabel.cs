@@ -1,7 +1,7 @@
 ﻿using Pool;
 using UnityEngine;
 
-namespace UI
+namespace UI.Popup
 {
     public class PopupLabel : BasePooledObject
     {
