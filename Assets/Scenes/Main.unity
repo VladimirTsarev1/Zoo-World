@@ -415,6 +415,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Services.Root.GameRoot
   gameDataConfig: {fileID: 11400000, guid: 54ba4ccf1dbd2584ea10f1a0a0e36a6f, type: 2}
   mainCamera: {fileID: 1375779921}
+  popupLabelPoolKey: {fileID: 11400000, guid: 66556bb408e179e4fba65ca36749b875, type: 2}
 --- !u!1 &1910511213
 GameObject:
   m_ObjectHideFlags: 0

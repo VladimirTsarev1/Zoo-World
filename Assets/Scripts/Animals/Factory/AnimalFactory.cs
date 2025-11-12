@@ -14,18 +14,29 @@ namespace Animals.Factory
             _poolService = poolService;
         }
 
-        public Animal CreateAnimal(AnimalConfig config, IAnimalCollisionService collisionService, Vector3 spawnPosition,
+        public Animal CreateAnimal(
+            AnimalConfig config, 
+            IAnimalCollisionService collisionService, 
+            Vector3 spawnPosition,
             Quaternion spawnRotation = default)
         {
             var keyConfig = config.PoolKeyConfig;
-            var animalComponent = _poolService.Get<Animal>(keyConfig);
+            var animalComponent = _poolService.Get<Animals.Animal>(keyConfig);
 
             animalComponent.transform.position = spawnPosition;
             animalComponent.transform.rotation = spawnRotation;
+            
+            // animalComponent.AteAnotherAnimal +=
+            // animalComponent.ReturnedToPool +=
 
             animalComponent.Initialize(config, collisionService);
 
             return animalComponent;
+        }
+
+        private void HandleAteAnotherAnimal()
+        {
+            
         }
     }
 }

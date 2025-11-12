@@ -1,12 +1,17 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Threading;
+using Cysharp.Threading.Tasks;
 using Pool.Configs;
 using UnityEngine;
+using Object = UnityEngine.Object;
 
 namespace Pool
 {
     public sealed class Pool
     {
-        private readonly Stack<IPoolable> _pooledObjects = new Stack<IPoolable>();
+        private readonly Stack<IPoolable> _pooledObjects = new();
+        private readonly Dictionary<IPoolable, CancellationTokenSource> _cancellationTokenSources = new();
 
         private readonly PoolConfig _config;
         private readonly Transform _parent;
@@ -26,23 +31,37 @@ namespace Pool
             }
         }
 
-        public T Get<T>(out IPoolable poolable) where T : Component
+        public T Get<T>(out IPoolable pooledObject) where T : Component
         {
             if (_pooledObjects.Count > 0)
             {
-                poolable = _pooledObjects.Pop();
+                pooledObject = _pooledObjects.Pop();
             }
             else
             {
                 var go = Object.Instantiate(_config.Prefab, _parent);
-                poolable = go.GetComponent<IPoolable>();
+                pooledObject = go.GetComponent<IPoolable>();
             }
 
-            poolable.PoolKey = _config.KeyConfig;
-            poolable.GameObject.SetActive(true);
-            poolable.OnSpawned();
+            switch (_config.ReleaseCondition)
+            {
+                case PoolReleaseConditions.Timer:
 
-            if (poolable.GameObject.TryGetComponent(out T component))
+                    var cts = new CancellationTokenSource();
+                    _cancellationTokenSources[pooledObject] = cts;
+                    ReleaseAfterDelayAsync(pooledObject, _config.TimeToRelease, cts.Token).Forget();
+
+                    break;
+
+                // case PoolReleaseConditions.OnDisable:
+                //     break;
+            }
+
+            pooledObject.PoolKey = _config.KeyConfig;
+            pooledObject.GameObject.SetActive(true);
+            pooledObject.OnSpawned();
+
+            if (pooledObject.GameObject.TryGetComponent(out T component))
             {
                 return component;
             }
@@ -52,9 +71,29 @@ namespace Pool
 
         public void Release(IPoolable pooledObject)
         {
-            // pooledObject.OnDespawned();
+            if (_cancellationTokenSources.TryGetValue(pooledObject, out var cts))
+            {
+                cts.Cancel();
+                cts.Dispose();
+                _cancellationTokenSources.Remove(pooledObject);
+            }
+
             pooledObject.GameObject.SetActive(false);
             _pooledObjects.Push(pooledObject);
+        }
+
+
+        private async UniTaskVoid ReleaseAfterDelayAsync(IPoolable pooledObject, float delay, CancellationToken token)
+        {
+            var isCancelled = await UniTask.Delay(TimeSpan.FromSeconds(delay), cancellationToken: token)
+                .SuppressCancellationThrow();
+
+            if (isCancelled)
+            {
+                return;
+            }
+
+            Release(pooledObject);
         }
     }
 }

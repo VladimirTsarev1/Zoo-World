@@ -5,7 +5,9 @@ using Animals.Configs;
 using Animals.Factory;
 using CameraBounds;
 using Cysharp.Threading.Tasks;
+using Pool;
 using Root;
+using UI.PopupService;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -17,7 +19,8 @@ namespace Animals.Spawn
         private readonly IAnimalFactory _animalFactory;
         private readonly IAnimalConfigService _animalConfigService;
         private readonly IAnimalCollisionService _animalCollisionService;
-        private readonly ICameraBoundsService _cameraBoundsService;
+        private readonly ICameraService _cameraService;
+        private readonly IPopupService _popupService;
 
         private CancellationTokenSource _cts;
 
@@ -28,13 +31,15 @@ namespace Animals.Spawn
             IAnimalFactory animalFactory,
             IAnimalConfigService animalConfigService,
             IAnimalCollisionService animalCollisionService,
-            ICameraBoundsService cameraBoundsService)
+            ICameraService cameraService,
+            IPopupService popupService)
         {
             _gameDataConfig = gameDataConfig;
             _animalFactory = animalFactory;
             _animalConfigService = animalConfigService;
             _animalCollisionService = animalCollisionService;
-            _cameraBoundsService = cameraBoundsService;
+            _cameraService = cameraService;
+            _popupService = popupService;
         }
 
         public void StartSpawn()
@@ -65,17 +70,50 @@ namespace Animals.Spawn
                     break;
                 }
 
-                var spawnPosition = _cameraBoundsService.GetRandomPointOnFloor();
+                var spawnPosition = _cameraService.GetRandomPointOnFloor();
                 spawnPosition.y += 1f;
 
                 var randomRotation = Quaternion.Euler(0, Random.Range(0f, 360f), 0);
 
-                _animalFactory.CreateAnimal(
+                var animal = _animalFactory.CreateAnimal(
                     _animalConfigService.GetRandomAnimal(),
                     _animalCollisionService,
                     spawnPosition,
                     randomRotation);
+
+                animal.ReturnedToPool += HandleReturnedToPool;
+
+                animal.AteAnotherAnimal += HandleAteAnotherAnimal;
+                animal.WasEatenByAnotherAnimal += HandleAteAnotherAnimal;
             }
+        }
+
+        private void HandleReturnedToPool(IPoolable pooledObject)
+        {
+            pooledObject.ReturnedToPool -= HandleReturnedToPool;
+
+            if (pooledObject is Animal animal)
+            {
+                animal.AteAnotherAnimal -= HandleAteAnotherAnimal;
+                animal.WasEatenByAnotherAnimal -= HandleWasEaten;
+            }
+        }
+
+        private void HandleAteAnotherAnimal(Animal originalAnimal, Animal eatenAnimal)
+        {
+            originalAnimal.AteAnotherAnimal -= HandleAteAnotherAnimal;
+            originalAnimal.WasEatenByAnotherAnimal -= HandleWasEaten;
+
+            var spawnPopupLabelPosition = originalAnimal.transform.position;
+            spawnPopupLabelPosition.y += 1f;
+
+            _popupService.SpawnPopupLabel(spawnPopupLabelPosition);
+        }
+
+        private void HandleWasEaten(Animal originalAnimal, Animal eaterAnimal)
+        {
+            originalAnimal.AteAnotherAnimal -= HandleAteAnotherAnimal;
+            originalAnimal.WasEatenByAnotherAnimal -= HandleWasEaten;
         }
     }
 }

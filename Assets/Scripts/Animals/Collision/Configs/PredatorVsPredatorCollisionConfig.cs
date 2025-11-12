@@ -14,8 +14,14 @@ namespace Animals.Collision.Configs
         {
             if (Random.Range(0f, 1f) >= 0.5f)
             {
+                animalA.Ate(animalB);
+                animalB.Eaten(animalA);
+
                 return new AnimalCollisionResults(AnimalCollisionResultType.Ate, AnimalCollisionResultType.Eaten);
             }
+
+            animalB.Ate(animalA);
+            animalA.Eaten(animalB);
 
             return new AnimalCollisionResults(AnimalCollisionResultType.Eaten, AnimalCollisionResultType.Ate);
         }

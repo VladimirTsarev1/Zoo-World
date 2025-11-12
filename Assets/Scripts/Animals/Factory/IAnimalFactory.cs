@@ -6,7 +6,7 @@ namespace Animals.Factory
 {
     public interface IAnimalFactory
     {
-        public Animal CreateAnimal(
+        public Animals.Animal CreateAnimal(
             AnimalConfig config,
             IAnimalCollisionService collisionService,
             Vector3 spawnPosition,

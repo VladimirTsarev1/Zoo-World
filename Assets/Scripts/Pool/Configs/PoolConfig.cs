@@ -9,7 +9,7 @@ namespace Pool.Configs
         [field: SerializeField] public GameObject Prefab { get; private set; }
         [field: SerializeField, Min(0)] public int PrewarmAmount { get; private set; } = 10;
 
-        [field: SerializeField] public PoolReleaseConditions ReturnCondition { get; private set; } =
+        [field: SerializeField] public PoolReleaseConditions ReleaseCondition { get; private set; } =
             PoolReleaseConditions.OnDisable;
 
         [field: SerializeField] public float TimeToRelease { get; private set; }

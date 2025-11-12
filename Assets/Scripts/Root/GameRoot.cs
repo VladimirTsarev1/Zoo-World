@@ -3,7 +3,9 @@ using Animals.Configs;
 using Animals.Factory;
 using Animals.Spawn;
 using CameraBounds;
+using Pool.Configs;
 using Pool.Service;
+using UI.PopupService;
 using UnityEngine;
 
 namespace Root
@@ -13,13 +15,17 @@ namespace Root
         [SerializeField] private GameDataConfig gameDataConfig;
         [SerializeField] private Camera mainCamera;
 
+        [SerializeField] private PoolKeyConfig popupLabelPoolKey;
+
         private IPoolService _poolService;
-        private ICameraBoundsService _cameraBoundsService;
+        private ICameraService _cameraService;
 
         private IAnimalConfigService _animalConfigService;
         private IAnimalCollisionService _animalCollisionService;
         private IAnimalSpawnService _animalSpawnService;
         private IAnimalFactory _animalFactory;
+
+        private IPopupService _popupService;
 
         private void Awake()
         {
@@ -40,20 +46,23 @@ namespace Root
         {
             _poolService = new PoolService();
 
-            _cameraBoundsService = new CameraBoundsService(mainCamera);
+            _cameraService = new CameraService(mainCamera);
+            
+            _popupService = new PopupService(_poolService, popupLabelPoolKey);
 
             _animalConfigService = new AnimalConfigService();
 
             _animalCollisionService = new AnimalCollisionService();
 
             _animalFactory = new AnimalFactory(_poolService);
-
+            
             _animalSpawnService = new AnimalSpawnService(
                 gameDataConfig,
                 _animalFactory,
                 _animalConfigService,
                 _animalCollisionService,
-                _cameraBoundsService);
+                _cameraService,
+                _popupService);
         }
     }
 }

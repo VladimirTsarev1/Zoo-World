@@ -7,7 +7,7 @@ namespace Pool.Service
 {
     public sealed class PoolService : IPoolService
     {
-        private readonly Dictionary<PoolKeyConfig, Pool> _pools = new Dictionary<PoolKeyConfig, Pool>();
+        private readonly Dictionary<PoolKeyConfig, Pool> _pools = new();
 
         public PoolService()
         {

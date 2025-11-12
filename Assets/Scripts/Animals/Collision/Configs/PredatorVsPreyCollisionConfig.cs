@@ -14,8 +14,14 @@ namespace Animals.Collision.Configs
         {
             if (animalA.Config.AnimalType == AnimalType.Predator)
             {
+                animalA.Ate(animalB);
+                animalB.Eaten(animalA);
+
                 return new AnimalCollisionResults(AnimalCollisionResultType.Ate, AnimalCollisionResultType.Eaten);
             }
+
+            animalB.Ate(animalA);
+            animalA.Eaten(animalB);
 
             return new AnimalCollisionResults(AnimalCollisionResultType.Eaten, AnimalCollisionResultType.Ate);
         }

@@ -1,4 +1,5 @@
-﻿using Animals.Collision;
+﻿using System;
+using Animals.Collision;
 using Animals.Configs;
 using Animals.Move;
 using Pool;
@@ -8,6 +9,9 @@ namespace Animals
 {
     public abstract class Animal : BasePooledObject
     {
+        public event Action<Animal, Animal> AteAnotherAnimal;
+        public event Action<Animal, Animal> WasEatenByAnotherAnimal;
+
         public AnimalConfig Config { get; private set; }
 
         protected Rigidbody Rigidbody;
@@ -38,13 +42,16 @@ namespace Animals
             }
         }
 
-        public virtual void Ate()
+        public virtual void Ate(Animal anotherAnimal)
         {
-            
+            AteAnotherAnimal?.Invoke(this, anotherAnimal);
         }
 
-        public virtual void Eaten()
+        public virtual void Eaten(Animal eaterAnimal)
         {
+            WasEatenByAnotherAnimal?.Invoke(this, eaterAnimal);
+
+            gameObject.SetActive(false);
         }
 
         public virtual void Push(Vector3 pushVector, ForceMode forceMode)

@@ -1,4 +1,4 @@
-﻿namespace Animals.Frog
+﻿namespace Animals.Entities.Frog
 {
     public class Frog : Animal
     {
