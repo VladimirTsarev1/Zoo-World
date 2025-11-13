@@ -3,15 +3,19 @@ using Animals.Collision;
 using Animals.Configs;
 using Animals.Move;
 using Animals.Viewport;
-using Pool;
+using Pool.Core;
 using UnityEngine;
 
 namespace Animals
 {
-    public abstract class Animal : BasePooledObject
+    public abstract class Animal : MonoBehaviour, IPoolable
     {
+        public event Action<IPoolable> ReturnedToPool;
+
         public event Action<Animal, Animal> AteAnotherAnimal;
         public event Action<Animal, Animal> WasEatenByAnotherAnimal;
+        
+        public GameObject GameObject => gameObject;
 
         public AnimalConfig Config { get; private set; }
         public Transform ThisTransform { get; private set; }
@@ -23,7 +27,8 @@ namespace Animals
         private IAnimalCollisionService _collisionService;
         private IAnimalViewportService _viewportService;
 
-        public void Initialize(AnimalConfig config,
+        public void Initialize(
+            AnimalConfig config,
             IAnimalCollisionService collisionService,
             IAnimalViewportService viewportService)
         {
@@ -47,6 +52,11 @@ namespace Animals
             _moveStrategy?.Move(Rigidbody);
         }
 
+        protected void OnDisable()
+        {
+            ReturnedToPool?.Invoke(this);
+        }
+
         private void OnCollisionEnter(UnityEngine.Collision other)
         {
             if (other.transform.TryGetComponent(out Animal anotherAnimal)
@@ -54,6 +64,14 @@ namespace Animals
             {
                 _collisionService.HandleCollision(this, anotherAnimal, other);
             }
+        }
+
+        public virtual void OnSpawned()
+        {
+        }
+
+        public virtual void OnDespawned()
+        {
         }
 
         public virtual void Ate(Animal anotherAnimal)

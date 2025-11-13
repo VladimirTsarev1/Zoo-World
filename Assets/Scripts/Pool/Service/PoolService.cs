@@ -1,13 +1,15 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Pool.Configs;
+using Pool.Core;
 using UnityEngine;
 
 namespace Pool.Service
 {
     public sealed class PoolService : IPoolService
     {
-        private readonly Dictionary<PoolKeyConfig, Pool> _pools = new();
+        private readonly Dictionary<PoolKeyConfig, Core.Pool> _pools = new();
+        private readonly Dictionary<IPoolable, Core.Pool> _activePoolObjects = new();
 
         public PoolService()
         {
@@ -28,20 +30,22 @@ namespace Pool.Service
         {
             var poolParentObject = new GameObject(poolConfig.KeyConfig.name);
 
-            var newPool = new Pool(poolConfig, poolParentObject.transform);
+            var newPool = new Core.Pool(poolConfig, poolParentObject.transform);
 
             _pools.Add(poolConfig.KeyConfig, newPool);
         }
 
-        public T Get<T>(PoolKeyConfig keyConfig) where T : Component
+        public T Get<T>(PoolKeyConfig keyConfig, float timeToRelease = float.NaN) where T : Component
         {
             if (_pools.TryGetValue(keyConfig, out var pool))
             {
-                var poolObject = pool.Get<T>(out IPoolable poolable);
+                var component = pool.Get<T>(out IPoolable pooledObject, timeToRelease);
 
-                poolable.ReturnedToPool += Release;
+                _activePoolObjects.Add(pooledObject, pool);
 
-                return poolObject;
+                pooledObject.ReturnedToPool += Release;
+
+                return component;
             }
 
             return null;
@@ -51,9 +55,10 @@ namespace Pool.Service
         {
             pooledObject.ReturnedToPool -= Release;
 
-            if (_pools.TryGetValue(pooledObject.PoolKey, out var pool))
+            if (_activePoolObjects.TryGetValue(pooledObject, out var pool))
             {
                 pool.Release(pooledObject);
+                _activePoolObjects.Remove(pooledObject);
             }
         }
     }

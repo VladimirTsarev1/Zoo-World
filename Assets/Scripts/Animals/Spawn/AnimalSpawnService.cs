@@ -6,7 +6,7 @@ using Animals.Factory;
 using Animals.Viewport;
 using CameraBounds;
 using Cysharp.Threading.Tasks;
-using Pool;
+using Pool.Core;
 using Root;
 using UI.EatenAnimalsCounters.Service;
 using UI.Popup.Service;
@@ -98,11 +98,11 @@ namespace Animals.Spawn
             }
         }
 
-        private void HandleReturnedToPool(IPoolable pooledObject)
+        private void HandleReturnedToPool(IPoolable poolObject)
         {
-            pooledObject.ReturnedToPool -= HandleReturnedToPool;
+            poolObject.ReturnedToPool -= HandleReturnedToPool;
 
-            if (pooledObject is Animal animal)
+            if (poolObject is Animal animal)
             {
                 animal.AteAnotherAnimal -= HandleAteAnotherAnimal;
                 animal.WasEatenByAnotherAnimal -= HandleWasEatenByAnotherAnimal;
@@ -111,9 +111,6 @@ namespace Animals.Spawn
 
         private void HandleAteAnotherAnimal(Animal originalAnimal, Animal eatenAnimal)
         {
-            originalAnimal.AteAnotherAnimal -= HandleAteAnotherAnimal;
-            originalAnimal.WasEatenByAnotherAnimal -= HandleWasEatenByAnotherAnimal;
-
             var spawnPopupLabelPosition = originalAnimal.transform.position;
             spawnPopupLabelPosition.y += 1f;
 
@@ -123,9 +120,6 @@ namespace Animals.Spawn
         private void HandleWasEatenByAnotherAnimal(Animal originalAnimal, Animal eaterAnimal)
         {
             _eatenAnimalsCounterService.AnimalEaten(originalAnimal);
-
-            originalAnimal.AteAnotherAnimal -= HandleAteAnotherAnimal;
-            originalAnimal.WasEatenByAnotherAnimal -= HandleWasEatenByAnotherAnimal;
         }
     }
 }

@@ -1,4 +1,4 @@
-﻿namespace Pool
+﻿namespace Pool.Core
 {
     public enum PoolReleaseConditions
     {

@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Pool.Core;
+using UnityEngine;
 
 namespace Pool.Configs
 {
