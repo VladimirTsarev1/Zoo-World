@@ -2,11 +2,11 @@
 
 namespace CameraBounds
 {
-    public sealed class CameraBoundsBoundsService : ICameraBoundsService
+    public sealed class CameraBoundsService : ICameraBoundsService
     {
         private readonly Camera _camera;
         
-        public CameraBoundsBoundsService(Camera camera)
+        public CameraBoundsService(Camera camera)
         {
             _camera = camera != null ? camera : Camera.main;
         }

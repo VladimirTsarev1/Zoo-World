@@ -54,7 +54,7 @@ namespace Root
         {
             _poolService = new PoolService();
 
-            _cameraBoundsService = new CameraBoundsBoundsService(mainCamera);
+            _cameraBoundsService = new CameraBoundsService(mainCamera);
 
             _popupService = new PopupService(_poolService, popupLabelPoolKey);
 

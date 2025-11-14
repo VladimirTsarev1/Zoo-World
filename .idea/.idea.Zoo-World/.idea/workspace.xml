@@ -5,23 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6326916e-0f4a-4150-bf42-980d9f7d7ce8" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Pool/Core.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Zoo-World/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Zoo-World/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Main.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Main.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Animals/Animal.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Animals/Animal.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Animals/Spawn/AnimalSpawnService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Animals/Spawn/AnimalSpawnService.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Pool/BasePooledObject.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Pool/BasePooledObject.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Pool/Configs/PoolConfig.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Pool/Configs/PoolConfig.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Pool/IPoolable.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Pool/Core/IPoolable.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Pool/IPoolable.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Pool/Core/IPoolable.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Pool/Pool.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Pool/Core/Pool.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Pool/Pool.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Pool/Core/Pool.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Pool/PoolReleaseConditions.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Pool/Core/PoolReleaseConditions.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Pool/PoolReleaseConditions.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Pool/Core/PoolReleaseConditions.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Pool/Service/IPoolService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Pool/Service/IPoolService.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Pool/Service/PoolService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Pool/Service/PoolService.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/UI/Popup/PopupLabel.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/UI/Popup/PopupLabel.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Animals/Viewport/AnimalViewportService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Animals/Viewport/AnimalViewportService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/CameraBounds/CameraBoundsBoundsService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/CameraBounds/CameraBoundsService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/CameraBounds/CameraBoundsBoundsService.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/CameraBounds/CameraBoundsService.cs.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Root/GameRoot.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Root/GameRoot.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -101,7 +89,8 @@
       <option name="presentableId" value="Default" />
       <updated>1762974864065</updated>
       <workItem from="1762974865558" duration="778000" />
-      <workItem from="1763017921857" duration="14610000" />
+      <workItem from="1763017921857" duration="14839000" />
+      <workItem from="1763102903827" duration="4743000" />
     </task>
     <servers />
   </component>
