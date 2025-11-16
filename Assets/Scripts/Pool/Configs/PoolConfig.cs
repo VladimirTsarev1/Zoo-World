@@ -1,7 +1,7 @@
-﻿using Pool.Core;
-using UnityEngine;
+﻿using UnityEngine;
+using ZooWorld.Pool.Core;
 
-namespace Pool.Configs
+namespace ZooWorld.Pool.Configs
 {
     [CreateAssetMenu(fileName = "NewPoolConfig", menuName = "ScriptableObject/PoolConfig")]
     public sealed class PoolConfig : ScriptableObject

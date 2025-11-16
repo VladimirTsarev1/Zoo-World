@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace UI.Popup.Service
+namespace ZooWorld.UI.Popup.Service
 {
     public interface IPopupService
     {

@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Animals.Collision.Configs
+namespace ZooWorld.Animals.Collision.Configs
 {
     [CreateAssetMenu(fileName = "PredatorVsPreyCollisionConfig",
         menuName = "ScriptableObject/CollisionConfig/PredatorVsPreyCollisionConfig")]
@@ -9,18 +9,17 @@ namespace Animals.Collision.Configs
         public override AnimalType AnimalTypeA { get; protected set; } = AnimalType.Predator;
         public override AnimalType AnimalTypeB { get; protected set; } = AnimalType.Prey;
 
-        public override void HandleCollision(Animal animalA, Animal animalB,
-            UnityEngine.Collision collision)
+        public override void HandleCollision(Animal animalA, Animal animalB, UnityEngine.Collision collision)
         {
             if (animalA.Config.AnimalType == AnimalType.Predator)
             {
-                animalA.Ate(animalB);
+                animalA.Eat(animalB);
                 animalB.WasEaten(animalA);
 
                 return;
             }
 
-            animalB.Ate(animalA);
+            animalB.Eat(animalA);
             animalA.WasEaten(animalB);
         }
     }

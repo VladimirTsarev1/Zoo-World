@@ -1,4 +1,4 @@
-﻿namespace Animals.Spawn
+﻿namespace ZooWorld.Animals.Spawn
 {
     public interface IAnimalSpawnService
     {

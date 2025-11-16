@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Animals.Move.Linear
+namespace ZooWorld.Animals.Move.Linear
 {
     public sealed class LinearMoveStrategy : IMoveStrategy
     {

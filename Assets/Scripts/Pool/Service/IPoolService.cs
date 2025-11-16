@@ -1,8 +1,8 @@
-﻿using Pool.Configs;
-using Pool.Core;
-using UnityEngine;
+﻿using UnityEngine;
+using ZooWorld.Pool.Configs;
+using ZooWorld.Pool.Core;
 
-namespace Pool.Service
+namespace ZooWorld.Pool.Service
 {
     public interface IPoolService
     {

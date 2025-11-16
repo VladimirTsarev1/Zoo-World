@@ -1,8 +1,8 @@
-﻿using Pool.Configs;
-using Pool.Service;
-using UnityEngine;
+﻿using UnityEngine;
+using ZooWorld.Pool.Configs;
+using ZooWorld.Pool.Service;
 
-namespace UI.Popup.Service
+namespace ZooWorld.UI.Popup.Service
 {
     public sealed class PopupService : IPopupService
     {

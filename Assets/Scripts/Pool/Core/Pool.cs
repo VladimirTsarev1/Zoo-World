@@ -2,11 +2,12 @@
 using System.Collections.Generic;
 using System.Threading;
 using Cysharp.Threading.Tasks;
-using Pool.Configs;
 using UnityEngine;
+using Zenject;
+using ZooWorld.Pool.Configs;
 using Object = UnityEngine.Object;
 
-namespace Pool.Core
+namespace ZooWorld.Pool.Core
 {
     public sealed class Pool
     {
@@ -16,17 +17,19 @@ namespace Pool.Core
         private readonly PoolConfig _config;
         private readonly Transform _parent;
 
-        public Pool(PoolConfig config, Transform parent = null)
+        private readonly DiContainer _container;
+
+        public Pool(DiContainer container, PoolConfig config, Transform parent = null)
         {
+            _container = container;
             _config = config;
             _parent = parent;
 
             for (int i = 0; i < config.PrewarmAmount; i++)
             {
-                var go = Object.Instantiate(config.Prefab, parent);
-                go.SetActive(false);
+                var poolObject = CreateNewPoolObject();
+                poolObject.GameObject.SetActive(false);
 
-                var poolObject = go.GetComponent<IPoolable>();
                 _poolObjects.Push(poolObject);
             }
         }
@@ -67,7 +70,7 @@ namespace Pool.Core
 
         private IPoolable CreateNewPoolObject()
         {
-            var spawnedObject = Object.Instantiate(_config.Prefab, _parent);
+            var spawnedObject = _container.InstantiatePrefab(_config.Prefab, _parent);
 
             if (spawnedObject.TryGetComponent(out IPoolable poolable))
             {

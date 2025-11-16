@@ -1,17 +1,12 @@
-﻿using Animals.Collision;
-using Animals.Configs;
-using Animals.Viewport;
-using UnityEngine;
+﻿using UnityEngine;
+using ZooWorld.Animals.Collision;
+using ZooWorld.Animals.Configs;
+using ZooWorld.Animals.Viewport;
 
-namespace Animals.Factory
+namespace ZooWorld.Animals.Factory
 {
     public interface IAnimalFactory
     {
-        public Animal CreateAnimal(
-            AnimalConfig config,
-            IAnimalCollisionService collisionService,
-            IAnimalViewportService viewportService,
-            Vector3 spawnPosition,
-            Quaternion spawnRotation = default);
+        public Animal CreateAnimal(AnimalConfig config, Vector3 spawnPosition, Quaternion spawnRotation = default);
     }
 }

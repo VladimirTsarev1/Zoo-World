@@ -1,18 +1,18 @@
-﻿using CameraBounds;
-using UnityEngine;
+﻿using UnityEngine;
+using ZooWorld.CameraBounds;
 
-namespace Animals.Viewport
+namespace ZooWorld.Animals.Viewport
 {
     public sealed class AnimalViewportService : IAnimalViewportService
     {
-        private ICameraBoundsService _cameraBoundsService;
+        private CameraBoundsService _cameraBoundsService;
 
-        public AnimalViewportService(ICameraBoundsService cameraBoundsService)
+        public AnimalViewportService(CameraBoundsService cameraBoundsService)
         {
             _cameraBoundsService = cameraBoundsService;
         }
 
-        public void CheckIsAnimalOutsideViewport(Animal animal)
+        public void CheckAnimalIsOutsideViewport(Animal animal)
         {
             if (_cameraBoundsService.IsOutside(animal.ThisTransform.position) && !animal.IsOutsideViewport)
             {

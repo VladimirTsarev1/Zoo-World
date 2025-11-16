@@ -1,8 +1,8 @@
 ﻿using System;
-using Pool.Core;
 using UnityEngine;
+using ZooWorld.Pool.Core;
 
-namespace UI.Popup
+namespace ZooWorld.UI.Popup
 {
     public sealed class PopupLabel : MonoBehaviour, IPoolable
     {

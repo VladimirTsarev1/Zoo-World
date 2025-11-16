@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-namespace Pool.Core
+namespace ZooWorld.Pool.Core
 {
     public interface IPoolable
     {

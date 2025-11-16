@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Animals.Move.Jump
+namespace ZooWorld.Animals.Move.Jump
 {
     [CreateAssetMenu(fileName = "JumpMoveConfig", menuName = "ScriptableObject/MoveConfig/JumpMoveConfig")]
     public sealed class JumpMoveConfig : MoveConfig

@@ -1,11 +1,11 @@
 ﻿using UnityEngine;
 
-namespace Utilities
+namespace ZooWorld.Utilities
 {
     [DisallowMultipleComponent]
     public sealed class FaceCamera : MonoBehaviour
     {
-        private UnityEngine.Camera _camera;
+        private Camera _camera;
         private Transform _cameraTransform;
         private Transform _thisTransform;
 
@@ -16,7 +16,7 @@ namespace Utilities
 
         private void Start()
         {
-            _camera = UnityEngine.Camera.main;
+            _camera = Camera.main;
 
             if (_camera)
             {

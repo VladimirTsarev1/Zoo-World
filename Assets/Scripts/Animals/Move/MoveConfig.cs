@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Animals.Move
+namespace ZooWorld.Animals.Move
 {
     public abstract class MoveConfig : ScriptableObject
     {

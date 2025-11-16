@@ -1,7 +1,7 @@
-﻿using Animals.Configs;
-using UnityEngine;
+﻿using UnityEngine;
+using ZooWorld.Animals.Configs;
 
-namespace Animals.Entities.Frog
+namespace ZooWorld.Animals.Entities.Frog
 {
     [CreateAssetMenu(fileName = "FrogConfig", menuName = "ScriptableObject/AnimalConfig/FrogConfig")]
     public sealed class FrogConfig : AnimalConfig

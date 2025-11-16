@@ -1,7 +1,7 @@
-﻿using Animals.Configs;
-using UnityEngine;
+﻿using UnityEngine;
+using ZooWorld.Animals.Configs;
 
-namespace Animals.Entities.Snake
+namespace ZooWorld.Animals.Entities.Snake
 {
     [CreateAssetMenu(fileName = "SnakeConfig", menuName = "ScriptableObject/AnimalConfig/SnakeConfig")]
     public class SnakeConfig : AnimalConfig

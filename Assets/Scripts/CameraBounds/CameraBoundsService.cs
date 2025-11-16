@@ -1,8 +1,8 @@
 ﻿using UnityEngine;
 
-namespace CameraBounds
+namespace ZooWorld.CameraBounds
 {
-    public sealed class CameraBoundsService : ICameraBoundsService
+    public sealed class CameraBoundsService
     {
         private readonly Camera _camera;
         

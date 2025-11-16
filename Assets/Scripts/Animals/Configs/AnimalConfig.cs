@@ -1,8 +1,8 @@
-﻿using Animals.Move;
-using Pool.Configs;
-using UnityEngine;
+﻿using UnityEngine;
+using ZooWorld.Animals.Move;
+using ZooWorld.Pool.Configs;
 
-namespace Animals.Configs
+namespace ZooWorld.Animals.Configs
 {
     public abstract class AnimalConfig : ScriptableObject
     {

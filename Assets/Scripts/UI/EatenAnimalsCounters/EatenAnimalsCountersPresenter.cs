@@ -1,23 +1,30 @@
-﻿namespace UI.EatenAnimalsCounters
+﻿using System;
+using ZooWorld.Animals;
+using ZooWorld.UI.EatenAnimalsCounters.View;
+
+namespace ZooWorld.UI.EatenAnimalsCounters
 {
     public sealed class EatenAnimalsCountersPresenter
     {
-        private readonly EatenAnimalsCountersModel _model;
-        private readonly EatenAnimalsCountersView _view;
+        private readonly EatenAnimalsCountersService _service;
+        private readonly IEatenAnimalsCountersView _view;
 
-        public EatenAnimalsCountersPresenter(EatenAnimalsCountersModel model, EatenAnimalsCountersView view)
+        public EatenAnimalsCountersPresenter(EatenAnimalsCountersService service, IEatenAnimalsCountersView view)
         {
-            _model = model;
+            _service = service;
             _view = view;
 
-            model.EatenAmountsChanged += HandleEatenAmountsChanged;
-            
-            model.Reset();
+            service.AmountChanged += HandleAmountChanged;
+
+            foreach (AnimalType type in Enum.GetValues(typeof(AnimalType)))
+            {
+                _view.SetAmount(type, _service.GetAmount(type));
+            }
         }
 
-        private void HandleEatenAmountsChanged(int eatenPreysAmount, int eatenPredatorsAmount)
+        private void HandleAmountChanged(AnimalType type, int amount)
         {
-            _view.SetCounters(eatenPreysAmount, eatenPredatorsAmount);
+            _view.SetAmount(type, amount);
         }
     }
 }

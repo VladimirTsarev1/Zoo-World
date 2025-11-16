@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using Animals.Collision.Configs;
 using UnityEngine;
+using ZooWorld.Animals.Collision.Configs;
 
-namespace Animals.Collision
+namespace ZooWorld.Animals.Collision
 {
     public sealed class AnimalCollisionService : IAnimalCollisionService
     {
@@ -23,8 +23,7 @@ namespace Animals.Collision
             }
         }
 
-        public void HandleCollision(Animal originalAnimal, Animal anotherAnimal,
-            UnityEngine.Collision collisionData)
+        public void HandleCollision(Animal originalAnimal, Animal anotherAnimal, UnityEngine.Collision collisionData)
         {
             var originalAnimalType = originalAnimal.Config.AnimalType;
             var anotherAnimalType = anotherAnimal.Config.AnimalType;

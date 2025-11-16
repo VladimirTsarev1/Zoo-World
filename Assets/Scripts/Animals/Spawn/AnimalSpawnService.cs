@@ -1,30 +1,27 @@
 ﻿using System;
 using System.Threading;
-using Animals.Collision;
-using Animals.Configs;
-using Animals.Factory;
-using Animals.Viewport;
-using CameraBounds;
 using Cysharp.Threading.Tasks;
-using Pool.Core;
-using Root;
-using UI.EatenAnimalsCounters.Service;
-using UI.Popup.Service;
 using UnityEngine;
+using Zenject;
+using ZooWorld.Animals.Collision;
+using ZooWorld.Animals.Configs;
+using ZooWorld.Animals.Factory;
+using ZooWorld.Animals.Viewport;
+using ZooWorld.CameraBounds;
+using ZooWorld.Pool.Core;
+using ZooWorld.Root;
+using ZooWorld.UI.Popup.Service;
 using Random = UnityEngine.Random;
 
-namespace Animals.Spawn
+namespace ZooWorld.Animals.Spawn
 {
     public sealed class AnimalSpawnService : IAnimalSpawnService
     {
-        private readonly GameDataConfig _gameDataConfig;
         private readonly IAnimalFactory _animalFactory;
-        private readonly IAnimalConfigService _animalConfigService;
-        private readonly IAnimalCollisionService _animalCollisionService;
-        private readonly IAnimalViewportService _animalViewportService;
-        private readonly IEatenAnimalsCounterService _eatenAnimalsCounterService;
-        private readonly ICameraBoundsService _cameraBoundsService;
-        private readonly IPopupService _popupService;
+        private readonly IAnimalConfigProvider _animalConfigProvider;
+
+        private readonly GameDataConfig _gameDataConfig;
+        private readonly CameraBoundsService _cameraBoundsService;
 
         private CancellationTokenSource _cts;
 
@@ -34,21 +31,14 @@ namespace Animals.Spawn
         public AnimalSpawnService(
             GameDataConfig gameDataConfig,
             IAnimalFactory animalFactory,
-            IAnimalConfigService animalConfigService,
-            IAnimalCollisionService animalCollisionService,
-            IAnimalViewportService animalViewportService,
-            IEatenAnimalsCounterService eatenAnimalsCounterService,
-            ICameraBoundsService cameraBoundsService,
-            IPopupService popupService)
+            IAnimalConfigProvider animalConfigProvider,
+            CameraBoundsService cameraBoundsService)
         {
             _gameDataConfig = gameDataConfig;
             _animalFactory = animalFactory;
-            _animalConfigService = animalConfigService;
-            _animalCollisionService = animalCollisionService;
-            _animalViewportService = animalViewportService;
-            _eatenAnimalsCounterService = eatenAnimalsCounterService;
+            _animalConfigProvider = animalConfigProvider;
+
             _cameraBoundsService = cameraBoundsService;
-            _popupService = popupService;
         }
 
         public void StartSpawn()
@@ -62,6 +52,7 @@ namespace Animals.Spawn
         {
             _cts?.Cancel();
             _cts?.Dispose();
+            _cts = null;
         }
 
         private async UniTaskVoid SpawnLoopAsync(CancellationToken cancellationToken)
@@ -84,42 +75,8 @@ namespace Animals.Spawn
 
                 var randomRotation = Quaternion.Euler(0, Random.Range(0f, 360f), 0);
 
-                var animal = _animalFactory.CreateAnimal(
-                    _animalConfigService.GetRandomAnimal(),
-                    _animalCollisionService,
-                    _animalViewportService,
-                    spawnPosition,
-                    randomRotation);
-
-                animal.ReturnedToPool += HandleReturnedToPool;
-
-                animal.AteAnotherAnimal += HandleAteAnotherAnimal;
-                animal.WasEatenByAnotherAnimal += HandleWasEatenByAnotherAnimal;
+                _animalFactory.CreateAnimal(_animalConfigProvider.GetRandomAnimal(), spawnPosition, randomRotation);
             }
-        }
-
-        private void HandleReturnedToPool(IPoolable poolObject)
-        {
-            poolObject.ReturnedToPool -= HandleReturnedToPool;
-
-            if (poolObject is Animal animal)
-            {
-                animal.AteAnotherAnimal -= HandleAteAnotherAnimal;
-                animal.WasEatenByAnotherAnimal -= HandleWasEatenByAnotherAnimal;
-            }
-        }
-
-        private void HandleAteAnotherAnimal(Animal originalAnimal, Animal eatenAnimal)
-        {
-            var spawnPopupLabelPosition = originalAnimal.transform.position;
-            spawnPopupLabelPosition.y += 1f;
-
-            _popupService.SpawnPopupLabel(spawnPopupLabelPosition);
-        }
-
-        private void HandleWasEatenByAnotherAnimal(Animal originalAnimal, Animal eaterAnimal)
-        {
-            _eatenAnimalsCounterService.AnimalEaten(originalAnimal);
         }
     }
 }

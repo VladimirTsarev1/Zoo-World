@@ -1,5 +1,5 @@
 ﻿
-namespace Animals.Entities.Frog
+namespace ZooWorld.Animals.Entities.Frog
 {
     public sealed class Frog : Animal
     {

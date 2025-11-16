@@ -1,4 +1,4 @@
-﻿namespace Pool.Core
+﻿namespace ZooWorld.Pool.Core
 {
     public enum PoolReleaseConditions
     {

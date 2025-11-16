@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Animals.Collision.Configs
+namespace ZooWorld.Animals.Collision.Configs
 {
     [CreateAssetMenu(fileName = "PreyVsPreyCollisionConfig",
         menuName = "ScriptableObject/CollisionConfig/PreyVsPreyCollisionConfig")]

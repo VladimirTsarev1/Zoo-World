@@ -1,8 +1,8 @@
 ﻿
-namespace Animals.Viewport
+namespace ZooWorld.Animals.Viewport
 {
     public interface IAnimalViewportService
     {
-        public void CheckIsAnimalOutsideViewport(Animal animal);
+        public void CheckAnimalIsOutsideViewport(Animal animal);
     }
 }

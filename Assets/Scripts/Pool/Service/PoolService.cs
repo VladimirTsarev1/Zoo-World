@@ -1,18 +1,23 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using Pool.Configs;
-using Pool.Core;
 using UnityEngine;
+using Zenject;
+using ZooWorld.Pool.Configs;
+using IPoolable = ZooWorld.Pool.Core.IPoolable;
 
-namespace Pool.Service
+namespace ZooWorld.Pool.Service
 {
     public sealed class PoolService : IPoolService
     {
         private readonly Dictionary<PoolKeyConfig, Core.Pool> _pools = new();
         private readonly Dictionary<IPoolable, Core.Pool> _activePoolObjects = new();
 
-        public PoolService()
+        private DiContainer _container;
+
+        public PoolService(DiContainer container)
         {
+            _container = container;
+
             InitPools();
         }
 
@@ -30,7 +35,7 @@ namespace Pool.Service
         {
             var poolParentObject = new GameObject(poolConfig.KeyConfig.name);
 
-            var newPool = new Core.Pool(poolConfig, poolParentObject.transform);
+            var newPool = new Core.Pool(_container, poolConfig, poolParentObject.transform);
 
             _pools.Add(poolConfig.KeyConfig, newPool);
         }

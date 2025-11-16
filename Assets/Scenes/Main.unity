@@ -821,12 +821,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1090253679}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 100, y: 1, z: 100}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1559703638}
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!64 &1090253681
 MeshCollider:
@@ -1000,7 +1000,7 @@ Camera:
     width: 1
     height: 1
   near clip plane: 0.3
-  far clip plane: 1000
+  far clip plane: 30
   field of view: 60
   orthographic: 1
   orthographic size: 10
@@ -1181,9 +1181,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1559703638}
-  - component: {fileID: 1559703639}
+  - component: {fileID: 1559703640}
+  - component: {fileID: 1559703642}
+  - component: {fileID: 1559703641}
   m_Layer: 0
-  m_Name: Root
+  m_Name: SceneContext
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1201,11 +1203,10 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 1090253680}
+  m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1559703639
+--- !u!114 &1559703640
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1214,12 +1215,57 @@ MonoBehaviour:
   m_GameObject: {fileID: 1559703637}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: da55378b2e0d45a58113d0bbbd040fba, type: 3}
+  m_Script: {fileID: 11500000, guid: 89715ad69b973a14899afa2c6730b30b, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Services.Root.GameRoot
+  m_EditorClassIdentifier: Zenject::Zenject.SceneContext
+  _scriptableObjectInstallers: []
+  _monoInstallers:
+  - {fileID: 1559703642}
+  - {fileID: 1559703641}
+  _installerPrefabs: []
+  _autoRun: 1
+  OnPreInstall:
+    m_PersistentCalls:
+      m_Calls: []
+  OnPostInstall:
+    m_PersistentCalls:
+      m_Calls: []
+  OnPreResolve:
+    m_PersistentCalls:
+      m_Calls: []
+  OnPostResolve:
+    m_PersistentCalls:
+      m_Calls: []
+  _parentNewObjectsUnderSceneContext: 0
+  _contractNames: []
+  _parentContractNames: []
+--- !u!114 &1559703641
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1559703637}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6015f84c4f26448081c32b73c01e3ea2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: ZooWorld::ZooWorld.UI.UIInstaller
+  eatenAnimalsCountersView: {fileID: 709526033}
+--- !u!114 &1559703642
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1559703637}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb4b1fa3f0274e82b405d53392eeb435, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: ZooWorld::ZooWorld.Root.GameplaySceneInstaller
   gameDataConfig: {fileID: 11400000, guid: 54ba4ccf1dbd2584ea10f1a0a0e36a6f, type: 2}
   mainCamera: {fileID: 1375779921}
-  eatenAnimalsCountersView: {fileID: 709526033}
   popupLabelPoolKey: {fileID: 11400000, guid: 66556bb408e179e4fba65ca36749b875, type: 2}
 --- !u!1 &1678842757
 GameObject:
@@ -1729,3 +1775,4 @@ SceneRoots:
   - {fileID: 1559703638}
   - {fileID: 647282260}
   - {fileID: 554501924}
+  - {fileID: 1090253680}

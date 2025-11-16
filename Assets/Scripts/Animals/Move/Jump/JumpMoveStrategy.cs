@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Animals.Move.Jump
+namespace ZooWorld.Animals.Move.Jump
 {
     public sealed class JumpMoveStrategy : IMoveStrategy
     {

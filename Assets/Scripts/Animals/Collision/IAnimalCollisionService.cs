@@ -1,10 +1,7 @@
-﻿namespace Animals.Collision
+﻿namespace ZooWorld.Animals.Collision
 {
     public interface IAnimalCollisionService
     {
-        public void HandleCollision(
-            Animal originalAnimal,
-            Animal collisionAnimal,
-            UnityEngine.Collision collisionData);
+        public void HandleCollision(Animal originalAnimal, Animal collisionAnimal, UnityEngine.Collision collisionData);
     }
 }

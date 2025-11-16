@@ -1,20 +1,18 @@
 ﻿using System;
-using Animals.Collision;
-using Animals.Configs;
-using Animals.Move;
-using Animals.Viewport;
-using Pool.Core;
 using UnityEngine;
+using Zenject;
+using ZooWorld.Animals.Collision;
+using ZooWorld.Animals.Configs;
+using ZooWorld.Animals.Move;
+using ZooWorld.Animals.Viewport;
+using IPoolable = ZooWorld.Pool.Core.IPoolable;
 
-namespace Animals
+namespace ZooWorld.Animals
 {
     public abstract class Animal : MonoBehaviour, IPoolable
     {
         public event Action<IPoolable> ReturnedToPool;
 
-        public event Action<Animal, Animal> AteAnotherAnimal;
-        public event Action<Animal, Animal> WasEatenByAnotherAnimal;
-        
         public GameObject GameObject => gameObject;
 
         public AnimalConfig Config { get; private set; }
@@ -27,24 +25,26 @@ namespace Animals
         private IAnimalCollisionService _collisionService;
         private IAnimalViewportService _viewportService;
 
-        public void Initialize(
-            AnimalConfig config,
-            IAnimalCollisionService collisionService,
-            IAnimalViewportService viewportService)
+        [Inject]
+        public void Construct(IAnimalCollisionService collisionService, IAnimalViewportService viewportService)
+        {
+            _collisionService = collisionService;
+            _viewportService = viewportService;
+        }
+
+        public void Initialize(AnimalConfig config)
         {
             ThisTransform = transform;
             Rigidbody = GetComponent<Rigidbody>();
 
             Config = config;
-            _collisionService = collisionService;
-            _viewportService = viewportService;
 
             _moveStrategy = config.MoveConfig.CreateStrategy();
         }
 
         private void Update()
         {
-            _viewportService.CheckIsAnimalOutsideViewport(this);
+            _viewportService.CheckAnimalIsOutsideViewport(this);
         }
 
         protected virtual void FixedUpdate()
@@ -74,15 +74,12 @@ namespace Animals
         {
         }
 
-        public virtual void Ate(Animal anotherAnimal)
+        public virtual void Eat(Animal prey)
         {
-            AteAnotherAnimal?.Invoke(this, anotherAnimal);
         }
 
-        public virtual void WasEaten(Animal eaterAnimal)
+        public virtual void WasEaten(Animal predator)
         {
-            WasEatenByAnotherAnimal?.Invoke(this, eaterAnimal);
-
             gameObject.SetActive(false);
         }
 
